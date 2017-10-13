@@ -84,18 +84,22 @@ public class MainActivity extends AppCompatActivity {
         bPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                desiredTempVal = desiredTempVal + 0.1f;
-                desiredTemp.setText(String.format("%.1f", desiredTempVal) + "\u2103");
-                thermometer.setCurrentTemp(desiredTempVal);
+                if (desiredTempVal <= max){
+                    desiredTempVal = desiredTempVal + 0.1f;
+                    desiredTemp.setText(String.format("%.1f", desiredTempVal) + "\u2103");
+                    thermometer.setCurrentTemp(desiredTempVal);
+                }
             }
         });
 
         bMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                desiredTempVal = desiredTempVal - 0.1f;
-                desiredTemp.setText(String.format("%.1f", desiredTempVal) + "\u2103");
-                thermometer.setCurrentTemp(desiredTempVal);
+                if ((desiredTempVal >= min)) {
+                    desiredTempVal = desiredTempVal - 0.1f;
+                    desiredTemp.setText(String.format("%.1f", desiredTempVal) + "\u2103");
+                    thermometer.setCurrentTemp(desiredTempVal);
+                }
             }
         });
 
