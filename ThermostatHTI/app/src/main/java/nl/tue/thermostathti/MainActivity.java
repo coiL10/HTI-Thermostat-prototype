@@ -1,5 +1,6 @@
 package nl.tue.thermostathti;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -13,12 +14,12 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
 
     float desiredTempVal = 21.0f;
     TextView desiredTemp;
     Thermometer thermometer;
     SeekBar seekBarDesiredTemp;
+    Intent intent;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -27,13 +28,16 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    intent = new Intent(MainActivity.this, MainActivity.class);
+                    startActivity(intent);
                     return true;
                 case R.id.navigation_dashboard:
-                    mTextMessage.setText(R.string.title_dashboard);
+                    intent = new Intent(MainActivity.this, week_overview.class);
+                    startActivity(intent);
                     return true;
                 case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                    intent = new Intent(MainActivity.this, Help.class);
+                    startActivity(intent);
                     return true;
             }
             return false;
@@ -104,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        mTextMessage = (TextView) findViewById(R.id.textView4);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
