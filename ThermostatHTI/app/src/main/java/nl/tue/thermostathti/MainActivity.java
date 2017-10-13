@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
 
-    int desiredTempVal = 210;
+    float desiredTempVal = 21.0f;
     TextView desiredTemp;
     Thermometer thermometer;
     SeekBar seekBarDesiredTemp;
@@ -54,15 +54,20 @@ public class MainActivity extends AppCompatActivity {
         thermometer = (Thermometer) findViewById(R.id.thermometer2);
 
         desiredTemp = (TextView) findViewById(R.id.desiredTemp);
-        desiredTemp.setText((double)desiredTempVal/10 + "\u2103");
-        thermometer.setCurrentTemp((float)desiredTempVal/10f);
-        seekBarDesiredTemp.setProgress(desiredTempVal/10);
+        desiredTemp.setText(String.format("%.1f", desiredTempVal) + "\u2103");
+        thermometer.setCurrentTemp(desiredTempVal);
+
+        seekBarDesiredTemp.setProgress((int)desiredTempVal);
+        final int step = 1;
+        final int max = 30;
+        final int min = 5;
+        seekBarDesiredTemp.setMax( (max - min) / step );
         seekBarDesiredTemp.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                desiredTempVal = i*10;
-                desiredTemp.setText((double)i + "\u2103");
-                thermometer.setCurrentTemp((float)i);
+                desiredTempVal = min + (i * step);
+                thermometer.setCurrentTemp(desiredTempVal);
+                desiredTemp.setText(desiredTempVal + "\u2103");
             }
 
             @Override
@@ -79,20 +84,18 @@ public class MainActivity extends AppCompatActivity {
         bPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                desiredTempVal++;
-                desiredTemp.setText((double)desiredTempVal/10 + "\u2103");
-                thermometer.setCurrentTemp((float)desiredTempVal/10f);
-                seekBarDesiredTemp.setProgress(desiredTempVal/10);
+                desiredTempVal = desiredTempVal + 0.1f;
+                desiredTemp.setText(String.format("%.1f", desiredTempVal) + "\u2103");
+                thermometer.setCurrentTemp(desiredTempVal);
             }
         });
 
         bMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                desiredTempVal--;
-                desiredTemp.setText((double)desiredTempVal/10 + "\u2103");
-                thermometer.setCurrentTemp((float)desiredTempVal/10f);
-                seekBarDesiredTemp.setProgress(desiredTempVal/10);
+                desiredTempVal = desiredTempVal - 0.1f;
+                desiredTemp.setText(String.format("%.1f", desiredTempVal) + "\u2103");
+                thermometer.setCurrentTemp(desiredTempVal);
             }
         });
 
