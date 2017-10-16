@@ -121,21 +121,6 @@ public class MainActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             System.err.println("Error from getdata "+e);
                         }
-
-                        if (!currentTemperature.equals("") && !targetTemperature.equals("")) {
-                            currentTempVal = Float.parseFloat(currentTemperature);
-                            targetTempVal = Float.parseFloat(targetTemperature);
-
-                            if (currentTempVal < targetTempVal) {
-                                tempRaise.setImageResource(R.drawable.arrowup664);
-                            } else {
-                                if (currentTempVal > targetTempVal) {
-                                    tempRaise.setImageResource(R.drawable.arrow64);
-                                } else {
-                                    tempRaise.setImageResource(android.R.color.transparent);
-                                }
-                            }
-                        }
                     }
                 }).start();
             }
