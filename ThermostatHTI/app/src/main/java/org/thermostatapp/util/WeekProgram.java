@@ -97,27 +97,27 @@ public class WeekProgram {
         return duplicatesFound;
     }
 
-/*
-    public void check_duplicates(ArrayList<Switch> new_switches) {
-        for (int i = 0; i < new_switches.size() - 1; i++) {
-            if (new_switches.get(i).getState()
-                    && new_switches.get(i + 1).getState())
-                if (new_switches.get(i).getType() == new_switches.get(i + 1)
-                        .getType()) {
-                    for (int j = i + 1; j < new_switches.size() - 1; j++)
-                        new_switches.set(j, new_switches.get(j + 1));
-                    if (new_switches.get(new_switches.size() - 2).getType()
-                            .equalsIgnoreCase("day"))
-                        new_switches.set(new_switches.size() - 1, new Switch(
-                                "night", false, "23:00"));
-                    else
-                        new_switches.set(new_switches.size() - 1, new Switch(
-                                "day", false, "23:00"));
-                    i -= 1;
-                }
+    /*
+        public void check_duplicates(ArrayList<Switch> new_switches) {
+            for (int i = 0; i < new_switches.size() - 1; i++) {
+                if (new_switches.get(i).getState()
+                        && new_switches.get(i + 1).getState())
+                    if (new_switches.get(i).getType() == new_switches.get(i + 1)
+                            .getType()) {
+                        for (int j = i + 1; j < new_switches.size() - 1; j++)
+                            new_switches.set(j, new_switches.get(j + 1));
+                        if (new_switches.get(new_switches.size() - 2).getType()
+                                .equalsIgnoreCase("day"))
+                            new_switches.set(new_switches.size() - 1, new Switch(
+                                    "night", false, "23:00"));
+                        else
+                            new_switches.set(new_switches.size() - 1, new Switch(
+                                    "day", false, "23:00"));
+                        i -= 1;
+                    }
+            }
         }
-    }
-*/
+    */
     public void set_durations() {
         for (int i = 0; i < this.valid_days.length; i++) {
 
@@ -149,9 +149,9 @@ public class WeekProgram {
     }
 
     //Setting switches. Switches list should always exactly consist out of 10 elements.
-     //* @param day
-     //* @param switches_list
-     //* @param nr_switches
+    //* @param day
+    //* @param switches_list
+    //* @param nr_switches
     public void setSwitches(String day, ArrayList<Switch> switches_list,
                             int nr_switches) {
         // Validate input???
