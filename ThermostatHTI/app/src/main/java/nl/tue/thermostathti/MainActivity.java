@@ -13,6 +13,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import org.thermostatapp.util.*;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class MainActivity extends AppCompatActivity {
 
     float desiredTempVal = 21.0f;
@@ -23,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button sync;
     String day, time, currentTemperature, targetTemperature;
+
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -63,16 +68,14 @@ public class MainActivity extends AppCompatActivity {
         HeatingSystem.WEEK_PROGRAM_ADDRESS = HeatingSystem.BASE_ADDRESS + "/weekProgram";
 
 
-        sync = (Button)findViewById(R.id.sync);
         currentTemp = (TextView) findViewById(R.id.currentTemp);
         currentTime = (TextView) findViewById(R.id.currentTime);
 
 
-        sync.setOnClickListener(new View.OnClickListener() {
+        ScheduledExecutorService scheduleTaskExecutor = Executors.newScheduledThreadPool(5);
 
-            @Override
-            public void onClick(View v) {
-                // TODO Auto-generated method stub
+        scheduleTaskExecutor.scheduleAtFixedRate(new Runnable() {
+            public void run() {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -110,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).start();
             }
-        });
+        }, 0, 1, TimeUnit.SECONDS);
 
 
 

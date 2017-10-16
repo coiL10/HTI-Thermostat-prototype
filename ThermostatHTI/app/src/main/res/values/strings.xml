@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">ThermostatHTI</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Settings</string>
+    <string name="title_dashboard">Week Settings</string>
+    <string name="title_notifications">Help</string>
     <string name="title_activity_help">Help</string>
     <string name="title_activity_week_overview">Week Overview</string>
 </resources>
