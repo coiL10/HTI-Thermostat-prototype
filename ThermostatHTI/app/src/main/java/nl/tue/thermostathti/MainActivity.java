@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import org.thermostatapp.util.*;
@@ -20,13 +21,18 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends AppCompatActivity {
 
     float desiredTempVal = 21.0f;
+    float currentTempVal, targetTempVal;
     TextView desiredTemp, currentTemp, currentTime;
+    ImageView DayOrNight, tempRaise;
     Thermometer thermometer;
     SeekBar seekBarDesiredTemp;
     Intent intent;
 
     Button sync;
     String day, time, currentTemperature, targetTemperature;
+
+
+
 
 
 
@@ -71,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
         currentTemp = (TextView) findViewById(R.id.currentTemp);
         currentTime = (TextView) findViewById(R.id.currentTime);
 
+        tempRaise = (ImageView) findViewById(R.id.tempRaise);
+        DayOrNight = (ImageView) findViewById(R.id.DayOrNight);
+
 
         ScheduledExecutorService scheduleTaskExecutor = Executors.newScheduledThreadPool(5);
 
@@ -81,12 +90,14 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         day = "";
                         time = "";
-                        currentTemperature = "";
+                        currentTemperature = "21.0";
+                        targetTemperature = "21.0";
                         try {
                             //getParam = HeatingSystem.get("currentTemperature");
                             day = HeatingSystem.get("day");
                             time = HeatingSystem.get("time");
                             currentTemperature = HeatingSystem.get("currentTemperature");
+                            targetTemperature = HeatingSystem.get("targetTemperature");
                             /*
 									HeatingSystem.get("day");
 									HeatingSystem.get("time");
@@ -109,6 +120,21 @@ public class MainActivity extends AppCompatActivity {
                             });
                         } catch (Exception e) {
                             System.err.println("Error from getdata "+e);
+                        }
+
+                        if (!currentTemperature.equals("") && !targetTemperature.equals("")) {
+                            currentTempVal = Float.parseFloat(currentTemperature);
+                            targetTempVal = Float.parseFloat(targetTemperature);
+
+                            if (currentTempVal < targetTempVal) {
+                                tempRaise.setImageResource(R.drawable.arrowup664);
+                            } else {
+                                if (currentTempVal > targetTempVal) {
+                                    tempRaise.setImageResource(R.drawable.arrow64);
+                                } else {
+                                    tempRaise.setImageResource(android.R.color.transparent);
+                                }
+                            }
                         }
                     }
                 }).start();
