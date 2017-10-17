@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                             currentTemp.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    currentTemp.setText(currentTemperature);
+                                    currentTemp.setText(currentTemperature.concat("\u2103"));
                                 }
                             });
                             currentTime.post(new Runnable() {
@@ -121,10 +121,28 @@ public class MainActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             System.err.println("Error from getdata "+e);
                         }
+
+                        try {
+                            currentTempVal = Float.parseFloat(currentTemperature);
+                            targetTempVal = Float.parseFloat(targetTemperature);
+                            if (currentTempVal < targetTempVal) {
+                                tempRaise.setImageResource(R.drawable.arrowup664);
+                            } else {
+                                if (currentTempVal > targetTempVal) {
+                                    tempRaise.setImageResource(R.drawable.arrow64);
+                                } else {
+                                    tempRaise.setImageResource(android.R.color.transparent);
+                                }
+                            }
+                        } catch (Exception e) {
+                            System.err.println("Error from parseFloat "+e);
+                            tempRaise.setImageResource(android.R.color.transparent);
+                        }
                     }
                 }).start();
             }
         }, 0, 1, TimeUnit.SECONDS);
+
 
 
 
@@ -137,6 +155,7 @@ public class MainActivity extends AppCompatActivity {
         desiredTemp = (TextView) findViewById(R.id.desiredTemp);
         desiredTemp.setText(String.format("%.1f", desiredTempVal) + "\u2103");
         thermometer.setCurrentTemp(desiredTempVal);
+        
 
         seekBarDesiredTemp.setProgress((int)desiredTempVal);
         final int step = 1;
