@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                             currentTemp.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    currentTemp.setText(currentTemperature.concat("\u2103"));
+                                    currentTemp.setText(currentTemperature + "\u2103");
                                 }
                             });
                             currentTime.post(new Runnable() {
@@ -153,9 +153,19 @@ public class MainActivity extends AppCompatActivity {
         thermometer = (Thermometer) findViewById(R.id.thermometer2);
 
         desiredTemp = (TextView) findViewById(R.id.desiredTemp);
+
+        targetTemperature = "21.0";
+
+        try {
+            targetTemperature = HeatingSystem.get("targetTemperature");
+            desiredTempVal = Float.parseFloat(targetTemperature);
+        } catch (Exception e) {
+                    System.err.println("Error from getdata " + e);
+        }
+
         desiredTemp.setText(String.format("%.1f", desiredTempVal) + "\u2103");
         thermometer.setCurrentTemp(desiredTempVal);
-        
+
 
         seekBarDesiredTemp.setProgress((int)desiredTempVal);
         final int step = 1;
