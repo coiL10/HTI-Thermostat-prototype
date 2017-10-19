@@ -178,6 +178,16 @@ public class MainActivity extends AppCompatActivity {
                 desiredTempVal = min + (i * step);
                 thermometer.setCurrentTemp(desiredTempVal);
                 desiredTemp.setText(desiredTempVal + "\u2103");
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            HeatingSystem.put("targetTemperature", Float.toString(desiredTempVal));
+                        } catch (Exception e) {
+                            System.err.println("Error from putdata " + e);
+                        }
+                    }
+                }).start();
             }
 
             @Override
@@ -194,10 +204,20 @@ public class MainActivity extends AppCompatActivity {
         bPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (desiredTempVal <= max){
+                if (desiredTempVal < max){
                     desiredTempVal = desiredTempVal + 0.1f;
                     desiredTemp.setText(String.format("%.1f", desiredTempVal) + "\u2103");
                     thermometer.setCurrentTemp(desiredTempVal);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                HeatingSystem.put("targetTemperature", Float.toString(desiredTempVal));
+                            } catch (Exception e) {
+                                System.err.println("Error from putdata " + e);
+                            }
+                        }
+                    }).start();
                 }
             }
         });
@@ -205,10 +225,20 @@ public class MainActivity extends AppCompatActivity {
         bMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if ((desiredTempVal >= min)) {
+                if ((desiredTempVal > min)) {
                     desiredTempVal = desiredTempVal - 0.1f;
                     desiredTemp.setText(String.format("%.1f", desiredTempVal) + "\u2103");
                     thermometer.setCurrentTemp(desiredTempVal);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                HeatingSystem.put("targetTemperature", Float.toString(desiredTempVal));
+                            } catch (Exception e) {
+                                System.err.println("Error from putdata " + e);
+                            }
+                        }
+                    }).start();
                 }
             }
         });
