@@ -51,7 +51,7 @@
                     android:id="@+id/currentTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.80"
                     android:text="currentTime"
                     android:textAlignment="center"
                     android:textSize="24sp" />

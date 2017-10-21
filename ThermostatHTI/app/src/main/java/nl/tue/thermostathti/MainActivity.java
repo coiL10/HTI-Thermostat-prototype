@@ -8,10 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.ToggleButton;
+
 import org.thermostatapp.util.*;
 
 import java.util.concurrent.Executors;
@@ -23,12 +26,16 @@ public class MainActivity extends AppCompatActivity {
     float desiredTempVal;
     float currentTempVal, targetTempVal;
     int currentTime_int;
-    TextView desiredTemp, currentTemp, currentTime;
+    TextView desiredTemp, currentTemp, currentTime, nextSwitchView;
     ImageView DayOrNight, tempRaise;
     Thermometer thermometer;
     SeekBar seekBarDesiredTemp;
     Intent intent;
-    String day, time, currentTemperature, targetTemperature;
+    String day, time, currentTemperature, targetTemperature, nextSwitch;
+    Switch currentSwitch;
+    WeekProgram wpg;
+    ToggleButton vacations;
+    boolean vacationBool;
 
 
 
@@ -72,6 +79,27 @@ public class MainActivity extends AppCompatActivity {
         HeatingSystem.BASE_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/5";
         HeatingSystem.WEEK_PROGRAM_ADDRESS = HeatingSystem.BASE_ADDRESS + "/weekProgram";
 
+
+        ImageButton bPlus = (ImageButton) findViewById(R.id.bPlus);
+        ImageButton bMinus = (ImageButton) findViewById(R.id.bMinus);
+        seekBarDesiredTemp = (SeekBar) findViewById(R.id.seekBarDesiredTemp);
+        thermometer = (Thermometer) findViewById(R.id.thermometer2);
+        vacations = (ToggleButton) findViewById(R.id.toggleButton);
+
+        desiredTemp = (TextView) findViewById(R.id.desiredTemp);
+        nextSwitchView = (TextView) findViewById(R.id.nextSwitch);
+
+
+        desiredTemp.setText(String.format("%.1f", desiredTempVal) + "\u2103");
+        thermometer.setCurrentTemp(desiredTempVal);
+
+
+        seekBarDesiredTemp.setProgress((int)desiredTempVal);
+        final int step = 1;
+        final int max = 30;
+        final int min = 5;
+        seekBarDesiredTemp.setMax( (max - min) / step );
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -103,7 +131,9 @@ public class MainActivity extends AppCompatActivity {
                         time = "";
                         currentTemperature = "21.0";
                         targetTemperature = "21.0";
+                        nextSwitch = "midnight";
                         try {
+                            wpg = HeatingSystem.getWeekProgram();
                             //getParam = HeatingSystem.get("currentTemperature");
                             day = HeatingSystem.get("day");
                             time = HeatingSystem.get("time");
@@ -129,6 +159,29 @@ public class MainActivity extends AppCompatActivity {
                             currentTime_int = front_int * 100
                                     + (int) ((float) back_int / 60.0 * 100.0);
 
+                            int i = 0;
+                            while (i < 5){
+                                Switch j = wpg.data.get(day).get(i);
+                                if (currentTime_int >= j.getTime_Int()){
+                                    currentSwitch = j;
+                                    if (i == 4){
+                                        nextSwitch = "midnight";
+                                    } else {
+                                        if (j.getState()) {
+                                            nextSwitch = wpg.data.get(day).get(i + 1).getTime();
+                                        }
+                                    }
+                                    nextSwitchView.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                           nextSwitchView.setText(nextSwitch);
+                                        }
+                                    });
+                                }
+                                i++;
+                            }
+
+
                             currentTemp.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -146,14 +199,44 @@ public class MainActivity extends AppCompatActivity {
                             System.err.println("Error from getdata "+e);
                         }
 
+                        vacationBool = HeatingSystem.getVacationMode();
+
+                        vacations.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                vacations.setChecked(vacationBool);
+                            }
+                        });
+
                         try {
                             currentTempVal = Float.parseFloat(currentTemperature);
                             targetTempVal = Float.parseFloat(targetTemperature);
+
+                            seekBarDesiredTemp.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    seekBarDesiredTemp.setProgress((int) targetTempVal-5);
+                                }
+                            });
+                            thermometer.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    thermometer.setCurrentTemp(targetTempVal);
+                                }
+                            });
+
+                            desiredTemp.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    desiredTemp.setText(String.format("%.1f", targetTempVal) + "\u2103");
+                                }
+                            });
+
                             if (currentTempVal < targetTempVal) {
                                 tempRaise.post(new Runnable() {
                                     @Override
                                     public void run() {
-                                        tempRaise.setImageResource(R.drawable.arrowup664)
+                                        tempRaise.setImageResource(R.drawable.arrowup664);
                                     }
                                 });
                             } else {
@@ -174,6 +257,25 @@ public class MainActivity extends AppCompatActivity {
                                     });
                                 }
                             }
+
+                            if (!vacationBool) {
+                                if (currentSwitch.getType().equals("day")) {
+                                    DayOrNight.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            DayOrNight.setImageResource(R.drawable.sun24);
+                                        }
+                                    });
+                                } else {
+                                    DayOrNight.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            DayOrNight.setImageResource(R.drawable.moon64);
+                                        }
+                                    });
+                                }
+                            }
+
                         } catch (Exception e) {
                             System.err.println("Error from parseFloat "+e);
                             tempRaise.post(new Runnable() {
@@ -191,40 +293,24 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-        ImageButton bPlus = (ImageButton) findViewById(R.id.bPlus);
-        ImageButton bMinus = (ImageButton) findViewById(R.id.bMinus);
-        seekBarDesiredTemp = (SeekBar) findViewById(R.id.seekBarDesiredTemp);
-        thermometer = (Thermometer) findViewById(R.id.thermometer2);
-
-        desiredTemp = (TextView) findViewById(R.id.desiredTemp);
-
-
-        desiredTemp.setText(String.format("%.1f", desiredTempVal) + "\u2103");
-        thermometer.setCurrentTemp(desiredTempVal);
-
-
-        seekBarDesiredTemp.setProgress((int)desiredTempVal);
-        final int step = 1;
-        final int max = 30;
-        final int min = 5;
-        seekBarDesiredTemp.setMax( (max - min) / step );
         seekBarDesiredTemp.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                desiredTempVal = min + (i * step);
-                thermometer.setCurrentTemp(desiredTempVal);
-                desiredTemp.setText(desiredTempVal + "\u2103");
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            HeatingSystem.put("targetTemperature", Float.toString(desiredTempVal));
-                        } catch (Exception e) {
-                            System.err.println("Error from putdata " + e);
+                if (b) {
+                    desiredTempVal = min + (i * step);
+                    thermometer.setCurrentTemp(desiredTempVal);
+                    desiredTemp.setText(desiredTempVal + "\u2103");
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                HeatingSystem.put("targetTemperature", Float.toString(desiredTempVal));
+                            } catch (Exception e) {
+                                System.err.println("Error from putdata " + e);
+                            }
                         }
-                    }
-                }).start();
+                    }).start();
+                }
             }
 
             @Override
@@ -271,6 +357,41 @@ public class MainActivity extends AppCompatActivity {
                         public void run() {
                             try {
                                 HeatingSystem.put("targetTemperature", Float.toString(desiredTempVal));
+                            } catch (Exception e) {
+                                System.err.println("Error from putdata " + e);
+                            }
+                        }
+                    }).start();
+                }
+            }
+        });
+
+        vacations.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked){
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                HeatingSystem.put("weekProgramState", "off");
+                            } catch (Exception e) {
+                                System.err.println("Error from putdata " + e);
+                            }
+                            DayOrNight.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    DayOrNight.setImageResource(R.drawable.palm64);
+                                }
+                            });
+                        }
+                    }).start();
+                } else {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                HeatingSystem.put("weekProgramState", "on");
                             } catch (Exception e) {
                                 System.err.println("Error from putdata " + e);
                             }
