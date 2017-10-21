@@ -20,15 +20,14 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
 
-    float desiredTempVal = 21.0f;
+    float desiredTempVal;
     float currentTempVal, targetTempVal;
+    int currentTime_int;
     TextView desiredTemp, currentTemp, currentTime;
     ImageView DayOrNight, tempRaise;
     Thermometer thermometer;
     SeekBar seekBarDesiredTemp;
     Intent intent;
-
-    Button sync;
     String day, time, currentTemperature, targetTemperature;
 
 
@@ -73,7 +72,19 @@ public class MainActivity extends AppCompatActivity {
         HeatingSystem.BASE_ADDRESS = "http://wwwis.win.tue.nl/2id40-ws/5";
         HeatingSystem.WEEK_PROGRAM_ADDRESS = HeatingSystem.BASE_ADDRESS + "/weekProgram";
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    currentTemperature = HeatingSystem.get("targetTemperature");
+                    desiredTempVal = Float.parseFloat(currentTemperature);
+                } catch (Exception e) {
+                    System.err.println("Error from getdata " + e);
+                }
+            }
+        }).start();
 
+        desiredTempVal = 15.0f;
         currentTemp = (TextView) findViewById(R.id.currentTemp);
         currentTime = (TextView) findViewById(R.id.currentTime);
 
@@ -106,6 +117,18 @@ public class MainActivity extends AppCompatActivity {
 									HeatingSystem.get("nightTemperature");
 									HeatingSystem.get("weekProgramState");
 							*/
+
+
+                            String front = time.substring(0, 2); // Get the first 2 digits if they
+                            // are there.
+                            String back = time.substring(3, 5); // Get the last 2 digits if they
+                            // are there.
+
+                            int front_int = Integer.parseInt(front);
+                            int back_int = Integer.parseInt(back);
+                            currentTime_int = front_int * 100
+                                    + (int) ((float) back_int / 60.0 * 100.0);
+
                             currentTemp.post(new Runnable() {
                                 @Override
                                 public void run() {
@@ -115,9 +138,10 @@ public class MainActivity extends AppCompatActivity {
                             currentTime.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    currentTime.setText(time);
+                                    currentTime.setText(day + ", " + time);
                                 }
                             });
+
                         } catch (Exception e) {
                             System.err.println("Error from getdata "+e);
                         }
@@ -126,17 +150,38 @@ public class MainActivity extends AppCompatActivity {
                             currentTempVal = Float.parseFloat(currentTemperature);
                             targetTempVal = Float.parseFloat(targetTemperature);
                             if (currentTempVal < targetTempVal) {
-                                tempRaise.setImageResource(R.drawable.arrowup664);
+                                tempRaise.post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        tempRaise.setImageResource(R.drawable.arrowup664)
+                                    }
+                                });
                             } else {
                                 if (currentTempVal > targetTempVal) {
-                                    tempRaise.setImageResource(R.drawable.arrow64);
+                                    tempRaise.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            tempRaise.setImageResource(R.drawable.arrow64);
+                                        }
+                                    });
+
                                 } else {
-                                    tempRaise.setImageResource(android.R.color.transparent);
+                                    tempRaise.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            tempRaise.setImageResource(android.R.color.transparent);
+                                        }
+                                    });
                                 }
                             }
                         } catch (Exception e) {
                             System.err.println("Error from parseFloat "+e);
-                            tempRaise.setImageResource(android.R.color.transparent);
+                            tempRaise.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    tempRaise.setImageResource(android.R.color.transparent);
+                                }
+                            });
                         }
                     }
                 }).start();
@@ -154,14 +199,6 @@ public class MainActivity extends AppCompatActivity {
 
         desiredTemp = (TextView) findViewById(R.id.desiredTemp);
 
-        targetTemperature = "21.0";
-
-        try {
-            targetTemperature = HeatingSystem.get("targetTemperature");
-            desiredTempVal = Float.parseFloat(targetTemperature);
-        } catch (Exception e) {
-                    System.err.println("Error from getdata " + e);
-        }
 
         desiredTemp.setText(String.format("%.1f", desiredTempVal) + "\u2103");
         thermometer.setCurrentTemp(desiredTempVal);
