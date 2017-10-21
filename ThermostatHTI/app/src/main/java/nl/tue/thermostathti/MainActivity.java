@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     Thermometer thermometer;
     SeekBar seekBarDesiredTemp;
     Intent intent;
-    String day, time, currentTemperature, targetTemperature, nextSwitch;
+    String day, time, currentTemperature, targetTemperature, nextSwitch, dayTemp, nightTemp;
     Switch currentSwitch;
     WeekProgram wpg;
     ToggleButton vacations;
@@ -129,6 +129,8 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
                         day = "";
                         time = "";
+                        dayTemp = "21.0";
+                        nightTemp = "21.0";
                         currentTemperature = "21.0";
                         targetTemperature = "21.0";
                         nextSwitch = "midnight";
@@ -139,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
                             time = HeatingSystem.get("time");
                             currentTemperature = HeatingSystem.get("currentTemperature");
                             targetTemperature = HeatingSystem.get("targetTemperature");
+                            dayTemp = HeatingSystem.get("dayTemperature");
+                            nightTemp = HeatingSystem.get("nightTemperature");
                             /*
 									HeatingSystem.get("day");
 									HeatingSystem.get("time");
@@ -259,7 +263,9 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             if (!vacationBool) {
-                                if (currentSwitch.getType().equals("day")) {
+                                if (targetTempVal != Float.parseFloat(dayTemp) || targetTempVal != Float.parseFloat(nightTemp)) {
+                                    DayOrNight.setImageResource(R.drawable.user64);
+                                } else if (currentSwitch.getType().equals("day")) {
                                     DayOrNight.post(new Runnable() {
                                         @Override
                                         public void run() {
