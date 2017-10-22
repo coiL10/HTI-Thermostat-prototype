@@ -152,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
 									HeatingSystem.get("weekProgramState");
 							*/
 
-
                             String front = time.substring(0, 2); // Get the first 2 digits if they
                             // are there.
                             String back = time.substring(3, 5); // Get the last 2 digits if they
@@ -199,11 +198,13 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             });
 
+                            vacationBool = HeatingSystem.getVacationMode();
+
                         } catch (Exception e) {
                             System.err.println("Error from getdata "+e);
                         }
 
-                        vacationBool = HeatingSystem.getVacationMode();
+
 
                         vacations.post(new Runnable() {
                             @Override
