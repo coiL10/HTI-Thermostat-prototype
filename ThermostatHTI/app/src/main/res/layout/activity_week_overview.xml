@@ -6,25 +6,82 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="nl.tue.thermostathti.week_overview">
+    tools:context="nl.tue.thermostathti.week_overview"
+    android:weightSum="1">
 
     <FrameLayout
-        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="140dp">
 
-        <TextView
-            android:id="@+id/message"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="@string/title_home" />
+            android:orientation="vertical">
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginTop="2dp"
+                app:srcCompat="@drawable/sun24" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="65dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/moon64" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/message"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="Set day temp: " />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="280dp"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/message"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:text="Set night temp: " />
+
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
     </FrameLayout>
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Weekly schedule" />
+
+    <ListView
+        android:id="@+id/weekSchedule"
+        android:layout_width="match_parent"
+        android:layout_height="247dp"
+        android:layout_weight="1.00" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
