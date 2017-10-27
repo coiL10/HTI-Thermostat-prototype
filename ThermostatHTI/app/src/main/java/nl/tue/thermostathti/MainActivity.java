@@ -264,9 +264,14 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             if (!vacationBool) {
-                                if (targetTempVal != Float.parseFloat(dayTemp) || targetTempVal != Float.parseFloat(nightTemp)) {
-                                    DayOrNight.setImageResource(R.drawable.user64);
-                                } else if (currentSwitch.getType().equals("day")) {
+                                if (currentSwitch.getType().equals("night") && targetTempVal == Float.parseFloat(nightTemp)) {
+                                    DayOrNight.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            DayOrNight.setImageResource(R.drawable.moon64);
+                                        }
+                                    });
+                                } else if (currentSwitch.getType().equals("day") && targetTempVal == Float.parseFloat(dayTemp)) {
                                     DayOrNight.post(new Runnable() {
                                         @Override
                                         public void run() {
@@ -274,12 +279,7 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                     });
                                 } else {
-                                    DayOrNight.post(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            DayOrNight.setImageResource(R.drawable.moon64);
-                                        }
-                                    });
+                                    DayOrNight.setImageResource(R.drawable.user64);
                                 }
                             }
 

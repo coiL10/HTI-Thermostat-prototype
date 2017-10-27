@@ -29,7 +29,7 @@
                     android:id="@+id/textView14"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="1.36"
                     android:text="Current time"
                     android:textAlignment="textStart" />
 
@@ -37,7 +37,7 @@
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.01"
+                    android:layout_weight="0.73"
                     android:text="Next switch"
                     android:textAlignment="textStart" />
             </LinearLayout>
@@ -51,7 +51,7 @@
                     android:id="@+id/currentTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.80"
+                    android:layout_weight="0.46"
                     android:text="currentTime"
                     android:textAlignment="center"
                     android:textSize="24sp" />
@@ -60,7 +60,7 @@
                     android:id="@+id/nextSwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="0.20"
                     android:text="nextSwitch"
                     android:textAlignment="center"
                     android:textSize="24sp" />
@@ -84,7 +84,7 @@
                 android:layout_centerVertical="true"
                 android:text="currentTemp"
                 android:textAlignment="center"
-                android:textSize="30sp" />
+                android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/textView20"
