@@ -163,11 +163,11 @@ public class MainActivity extends AppCompatActivity {
                                     + (int) ((float) back_int / 60.0 * 100.0);
 
                             int i = 0;
-                            while (i < 5){
+                            while (i < 10){
                                 Switch j = wpg.data.get(day).get(i);
                                 if (currentTime_int >= j.getTime_Int()){
                                     currentSwitch = j;
-                                    if (i == 4){
+                                    if (i == 9){
                                         nextSwitch = "midnight";
                                     } else {
                                         if (j.getState()) {
@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             if (!vacationBool) {
-                                if (currentSwitch.getType().equals("night") && targetTempVal == Float.parseFloat(nightTemp)) {
+                                if (currentSwitch.getType().equals("night") && targetTempVal == Float.parseFloat(nightTemp) || nextSwitch.equals("midnight")) {
                                     DayOrNight.post(new Runnable() {
                                         @Override
                                         public void run() {
