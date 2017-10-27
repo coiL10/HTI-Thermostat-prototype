@@ -279,7 +279,12 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                     });
                                 } else {
-                                    DayOrNight.setImageResource(R.drawable.user64);
+                                    DayOrNight.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            DayOrNight.setImageResource(R.drawable.user64);
+                                        }
+                                    });
                                 }
                             }
 

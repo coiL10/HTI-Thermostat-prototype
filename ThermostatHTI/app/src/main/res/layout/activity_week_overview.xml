@@ -148,20 +148,22 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/mondayView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:paddingBottom="4dp"
-                    android:background="#1111">
+                    android:background="#1111"
+                    android:clickable="true"
+                    android:paddingBottom="4dp">
 
                     <TextView
                         android:id="@+id/textView1"
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
-                        android:gravity="center_vertical"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:text="@string/title_activity_week_monday" />
 
                     <ImageView

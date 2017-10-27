@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -23,6 +24,7 @@ public class week_overview extends AppCompatActivity {
     String dayTemp, nightTemp;
     float dayTempVal, nightTempVal;
     TextView dayTempText, nightTempText;
+    View mondayView;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -64,6 +66,7 @@ public class week_overview extends AppCompatActivity {
         seekBarNight = (SeekBar) findViewById(R.id.seekBarNight);
         nightTempText = (TextView) findViewById(R.id.nightTempText);
         dayTempText = (TextView) findViewById(R.id.dayTempText);
+        mondayView = findViewById(R.id.mondayView);
 
 
         final int step = 1;
@@ -193,7 +196,13 @@ public class week_overview extends AppCompatActivity {
             }
         });
 
-
+        mondayView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(week_overview.this, week_monday.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
