@@ -10,7 +10,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_gravity="top">
 
@@ -46,14 +46,12 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:text="Set day temp: " />
 
@@ -61,13 +59,13 @@
                     android:id="@+id/dayTempText"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginTop="10dp"
                     android:text="X" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginTop="10dp"
                     android:text=" °C"/>
             </LinearLayout>
 
@@ -84,6 +82,28 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/bMinusDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@android:drawable/arrow_down_float" />
+
+                <ImageButton
+                    android:id="@+id/bPlusDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@android:drawable/arrow_up_float" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingBottom="4dp">
@@ -92,20 +112,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:paddingTop="4dp"
                     android:text="Set night temp: " />
 
                 <TextView
                     android:id="@+id/nightTempText"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:paddingTop="4dp"
                     android:text="Y" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingTop="4dp"
                     android:text=" °C"/>
             </LinearLayout>
 
@@ -120,26 +137,70 @@
                     android:layout_weight="1"
                     android:max="25" />
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/bMinusNight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@android:drawable/arrow_down_float" />
+
+                <ImageButton
+                    android:id="@+id/bPlusNight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:scaleType="fitCenter"
+                    app:srcCompat="@android:drawable/arrow_up_float" />
+            </LinearLayout>
         </LinearLayout>
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/textView99"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        android:paddingStart="5dp"
-        android:paddingEnd="5dp"
-        android:textSize="18sp"
-        android:background="#3F51B5"
-        android:textColor="#FFFFFF"
-        android:text="@string/subtitle_activity_week_overview" />
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:background="#3F51B5">
+
+            <TextView
+                android:id="@+id/textView99"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:layout_gravity="center_vertical"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:text="@string/subtitle_activity_week_overview" />
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:textSize="12dp"
+                android:text="Revert" />
+        </LinearLayout>
+        </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="280dp">
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -150,11 +211,11 @@
                 <LinearLayout
                     android:id="@+id/mondayView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginTop="4dp"
-                    android:background="#1111"
-                    android:clickable="true"
-                    android:paddingBottom="4dp">
+                    android:paddingBottom="4dp"
+                    android:background="@drawable/week_selector"
+                    android:clickable="true">
 
                     <TextView
                         android:id="@+id/textView1"
@@ -163,7 +224,6 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/week_selector"
                         android:gravity="center_vertical"
                         android:text="@string/title_activity_week_monday" />
 
@@ -177,10 +237,11 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginTop="4dp"
                     android:paddingBottom="4dp"
-                    android:background="#1111">
+                    android:background="@drawable/week_selector"
+                    android:clickable="true">
 
                     <TextView
                         android:id="@+id/textView2"
@@ -202,10 +263,11 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginTop="4dp"
                     android:paddingBottom="4dp"
-                    android:background="#1111">
+                    android:background="@drawable/week_selector"
+                    android:clickable="true">
 
                     <TextView
                         android:id="@+id/textView3"
@@ -222,15 +284,16 @@
                         android:layout_width="40dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_action_arrow" />
+                        app:srcCompat="@drawable/ic_action_arrow"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginTop="4dp"
                     android:paddingBottom="4dp"
-                    android:background="#1111">
+                    android:background="@drawable/week_selector"
+                    android:clickable="true">
 
                     <TextView
                         android:id="@+id/textView4"
@@ -240,7 +303,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:layout_weight="1"
-                        android:text="@string/title_activity_week_thursday"/>
+                        android:text="@string/title_activity_week_thursday" />
 
                     <ImageView
                         android:id="@+id/imageView4"
@@ -252,10 +315,11 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginTop="4dp"
                     android:paddingBottom="4dp"
-                    android:background="#1111">
+                    android:background="@drawable/week_selector"
+                    android:clickable="true">
 
                     <TextView
                         android:id="@+id/textView5"
@@ -277,10 +341,11 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginTop="4dp"
                     android:paddingBottom="4dp"
-                    android:background="#1111">
+                    android:background="@drawable/week_selector"
+                    android:clickable="true">
 
                     <TextView
                         android:id="@+id/textView6"
@@ -302,9 +367,11 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_marginTop="4dp"
-                    android:background="#1111">
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/week_selector"
+                    android:clickable="true">
 
                     <TextView
                         android:id="@+id/textView7"
