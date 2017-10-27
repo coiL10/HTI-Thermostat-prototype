@@ -6,12 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="nl.tue.thermostathti.week_overview"
-    android:weightSum="1">
+    tools:context="nl.tue.thermostathti.week_overview">
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="150dp"
+        android:layout_weight="1"
+        android:layout_gravity="top">
 
         <LinearLayout
             android:id="@+id/content"
@@ -24,6 +25,7 @@
                 android:layout_width="65dp"
                 android:layout_height="65dp"
                 android:layout_marginTop="5dp"
+                android:layout_weight="1"
                 app:srcCompat="@drawable/sun24" />
 
             <ImageView
@@ -31,6 +33,7 @@
                 android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_weight="1"
                 app:srcCompat="@drawable/moon64" />
 
         </LinearLayout>
@@ -39,47 +42,96 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:weightSum="1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/message"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="Set day temp: " />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <SeekBar
-                android:id="@+id/seekBarDay"
-                android:layout_width="280dp"
-                android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:text="Set day temp: " />
 
-            <TextView
-                android:id="@+id/message"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:text="Set night temp: " />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:text="X"/>
 
-            <SeekBar
-                android:id="@+id/seekBarNight"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:text=" °C"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <SeekBar
+                    android:id="@+id/seekBarDay"
+                    android:layout_width="280dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:text="Set night temp: " />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:text="Y"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/activity_vertical_margin"
+                    android:text=" °C"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <SeekBar
+                    android:id="@+id/seekBarNight"
+                    android:layout_width="280dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+            </LinearLayout>
         </LinearLayout>
     </FrameLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView99"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
-        android:paddingLeft="5dp"
-        android:textSize="20dp"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:textSize="18sp"
         android:background="#3F51B5"
         android:textColor="#FFFFFF"
-        android:text="Weekly schedule" />
+        android:text="@string/subtitle_activity_week_overview" />
 
     <FrameLayout
         android:layout_width="match_parent"

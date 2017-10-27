@@ -5,4 +5,13 @@
     <string name="title_notifications">Help</string>
     <string name="title_activity_help">Help</string>
     <string name="title_activity_week_overview">Week Program</string>
+    <string name="subtitle_activity_week_overview">Weekly schedule</string>
+    <string name="title_activity_week_monday">Monday</string>
+    <string name="title_activity_week_tuesday">Tuesday</string>
+    <string name="title_activity_week_wednesday">Wednesday</string>
+    <string name="title_activity_week_thursday">Thursday</string>
+    <string name="title_activity_week_friday">Friday</string>
+    <string name="title_activity_week_saturday">Saturday</string>
+    <string name="title_activity_week_sunday">Sunday</string>
+
 </resources>

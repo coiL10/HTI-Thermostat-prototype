@@ -37,6 +37,62 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="nl.tue.thermostathti.MainActivity" />
         </activity>
+        <activity
+            android:name=".week_monday"
+            android:label="Monday"
+            android:parentActivityName=".week_overview">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.tue.thermostathti.MainActivity" />
+        </activity>
+        <activity
+            android:name=".week_tuesday"
+            android:label="Tuesday"
+            android:parentActivityName=".week_overview">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.tue.thermostathti.MainActivity" />
+        </activity>
+        <activity
+            android:name=".week_wednesday"
+            android:label="Wednesday"
+            android:parentActivityName=".week_overview">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.tue.thermostathti.MainActivity" />
+        </activity>
+        <activity
+            android:name=".week_thursday"
+            android:label="Thursday"
+            android:parentActivityName=".week_overview">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.tue.thermostathti.MainActivity" />
+        </activity>
+        <activity
+            android:name=".week_friday"
+            android:label="Friday"
+            android:parentActivityName=".week_overview">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.tue.thermostathti.MainActivity" />
+        </activity>
+        <activity
+            android:name=".week_saturday"
+            android:label="Saturday"
+            android:parentActivityName=".week_overview">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.tue.thermostathti.MainActivity" />
+        </activity>
+        <activity
+            android:name=".week_sunday"
+            android:label="Sunday"
+            android:parentActivityName=".week_overview">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="nl.tue.thermostathti.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
