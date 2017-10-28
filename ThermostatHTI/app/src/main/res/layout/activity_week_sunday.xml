@@ -8,6 +8,18 @@
     android:orientation="vertical"
     tools:context="nl.tue.thermostathti.week_sunday">
 
+    <TextView
+        android:id="@+id/TextView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#3F51B5"
+        android:paddingBottom="3dp"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        android:text="Day switch intervals"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="455dp"
