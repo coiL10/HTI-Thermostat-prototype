@@ -202,7 +202,7 @@ public class week_tuesday extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(week_tuesday.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        tuesDayEnd5.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
+                        tuesDayEnd4.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
                         wpg.data.get("Tuesday").set(7, new Switch("night", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
                     }
                 }, hour, minute, true);//Yes 24 hour time
