@@ -174,19 +174,20 @@ public class MainActivity extends AppCompatActivity {
                                             nextSwitch = wpg.data.get(day).get(i + 1).getTime();
                                         }
                                     }
-                                    nextSwitchView.post(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            if(!vacationBool) {
-                                                nextSwitchView.setText(nextSwitch);
-                                            } else {
-                                                nextSwitchView.setText("vacation mode");
-                                            }
-                                        }
-                                    });
                                 }
                                 i++;
                             }
+
+                            nextSwitchView.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if(!vacationBool) {
+                                        nextSwitchView.setText(nextSwitch);
+                                    } else {
+                                        nextSwitchView.setText("vacation");
+                                    }
+                                }
+                            });
 
 
                             currentTemp.post(new Runnable() {
