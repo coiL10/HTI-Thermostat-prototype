@@ -177,7 +177,11 @@ public class MainActivity extends AppCompatActivity {
                                     nextSwitchView.post(new Runnable() {
                                         @Override
                                         public void run() {
-                                           nextSwitchView.setText(nextSwitch);
+                                            if(!vacationBool) {
+                                                nextSwitchView.setText(nextSwitch);
+                                            } else {
+                                                nextSwitchView.setText("vacation mode");
+                                            }
                                         }
                                     });
                                 }
