@@ -194,7 +194,7 @@
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:layout_gravity="center_vertical"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textColor="#FFFFFF"
                 android:text="@string/subtitle_activity_week_overview" />
 
