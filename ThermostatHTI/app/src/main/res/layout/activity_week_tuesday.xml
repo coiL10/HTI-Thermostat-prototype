@@ -27,13 +27,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
-                    android:ems="4"
+                    android:ems="5"
                     android:inputType="time"
-                    android:paddingLeft="30dp" />
+                    />
 
                 <TextView
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:text="to" />
 
 
@@ -42,7 +43,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
-                    android:ems="4"
+                    android:ems="5"
                     android:inputType="time" />
 
             </LinearLayout>
@@ -56,22 +57,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
-                    android:paddingLeft="30dp"
-                    android:ems="4"
+                    android:ems="5"
                     android:inputType="time" />
 
                 <TextView
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:text="to" />
 
 
                 <Button
-                    android:id="@+id/editTextTuesday4"
+                    android:id="@+id/editTextTuesday5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
-                    android:ems="4"
+                    android:ems="5"
                     android:inputType="time" />
 
             </LinearLayout>
@@ -85,13 +86,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
-                    android:paddingLeft="30dp"
-                    android:ems="4"
+                    android:ems="5"
                     android:inputType="time" />
 
                 <TextView
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:text="to" />
 
 
@@ -100,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
-                    android:ems="4"
+                    android:ems="5"
                     android:inputType="time" />
 
             </LinearLayout>
@@ -114,13 +115,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
-                    android:paddingLeft="30dp"
-                    android:ems="4"
+                    android:ems="5"
                     android:inputType="time" />
 
                 <TextView
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:text="to" />
 
 
@@ -129,7 +130,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
-                    android:ems="4"
+                    android:ems="5"
                     android:inputType="time" />
 
             </LinearLayout>
@@ -143,13 +144,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
-                    android:paddingLeft="30dp"
-                    android:ems="4"
+                    android:ems="5"
                     android:inputType="time" />
 
                 <TextView
                     android:layout_width="20dp"
                     android:layout_height="wrap_content"
+                    android:textAlignment="center"
                     android:text="to" />
 
 
@@ -158,7 +159,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
-                    android:ems="4"
+                    android:ems="5"
                     android:inputType="time" />
 
             </LinearLayout>
