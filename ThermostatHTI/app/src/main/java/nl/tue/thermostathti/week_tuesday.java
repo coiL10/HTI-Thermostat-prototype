@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import org.thermostatapp.util.*;
 
@@ -23,6 +24,7 @@ public class week_tuesday extends AppCompatActivity {
 
     WeekProgram wpg;
     Button tuesDayStart1, tuesDayEnd1, tuesDayStart2, tuesDayEnd2, tuesDayStart3, tuesDayEnd3, tuesDayStart4, tuesDayEnd4, tuesDayStart5, tuesDayEnd5;
+    Boolean allowed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +56,13 @@ public class week_tuesday extends AppCompatActivity {
         tuesDayStart5 = (Button) findViewById(R.id.editTextTuesday9);
         tuesDayEnd5 = (Button) findViewById(R.id.editTextTuesday10);
 
+        allowed = true;
+
 
         tuesDayStart1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                allowed = true;
                 TimePickerDialog mTimePicker;
                 Calendar mcurrentTime = Calendar.getInstance();
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
@@ -65,8 +70,26 @@ public class week_tuesday extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(week_tuesday.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        tuesDayStart1.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
-                        wpg.data.get("Tuesday").set(0, new Switch("day", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        for (int i = 0; i < 5; i++) {
+                            if (wpg.data.get("Tuesday").get(2*i).getState()){
+                                int hour = selectedHour*100 + selectedMinute;
+                                if (hour > wpg.data.get("Tuesday").get(2*i).getTime_Int() && hour < wpg.data.get("Tuesday").get(2*i + 1).getTime_Int()){
+                                    allowed = false;
+                                }
+                            }
+                        }
+                        if (allowed) {
+                            tuesDayStart1.setText(String.format("%02d", selectedHour) + ":" + String.format("%02d", selectedMinute));
+                            wpg.data.get("Tuesday").set(0, new Switch("day", true, String.format("%02d", selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast overlap = Toast.makeText(getApplicationContext(), "The switch was not added: a new switch can't overlap with an already active switch.", Toast.LENGTH_LONG);
+                                    overlap.show();
+                                }
+                            });
+                        }
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -78,6 +101,7 @@ public class week_tuesday extends AppCompatActivity {
         tuesDayEnd1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                allowed = true;
                 TimePickerDialog mTimePicker;
                 Calendar mcurrentTime = Calendar.getInstance();
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
@@ -85,8 +109,26 @@ public class week_tuesday extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(week_tuesday.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        tuesDayEnd1.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
-                        wpg.data.get("Tuesday").set(1, new Switch("night", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        for (int i = 0; i < 5; i++) {
+                            if (wpg.data.get("Tuesday").get(2*i).getState()){
+                                int hour = selectedHour*100 + selectedMinute;
+                                if (hour > wpg.data.get("Tuesday").get(2*i).getTime_Int() && hour < wpg.data.get("Tuesday").get(2*i + 1).getTime_Int()){
+                                    allowed = false;
+                                }
+                            }
+                        }
+                        if (allowed) {
+                            tuesDayEnd1.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
+                            wpg.data.get("Tuesday").set(1, new Switch("night", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast overlap = Toast.makeText(getApplicationContext(), "The switch was not added: a new switch can't overlap with an already active switch.", Toast.LENGTH_LONG);
+                                    overlap.show();
+                                }
+                            });
+                        }
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -97,6 +139,7 @@ public class week_tuesday extends AppCompatActivity {
         tuesDayStart2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                allowed = true;
                 TimePickerDialog mTimePicker;
                 Calendar mcurrentTime = Calendar.getInstance();
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
@@ -104,8 +147,26 @@ public class week_tuesday extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(week_tuesday.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        tuesDayStart2.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
-                        wpg.data.get("Tuesday").set(2, new Switch("day", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        for (int i = 0; i < 5; i++) {
+                            if (wpg.data.get("Tuesday").get(2*i).getState()){
+                                int hour = selectedHour*100 + selectedMinute;
+                                if (hour > wpg.data.get("Tuesday").get(2*i).getTime_Int() && hour < wpg.data.get("Tuesday").get(2*i + 1).getTime_Int()){
+                                    allowed = false;
+                                }
+                            }
+                        }
+                        if (allowed) {
+                            tuesDayStart2.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
+                            wpg.data.get("Tuesday").set(2, new Switch("day", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast overlap = Toast.makeText(getApplicationContext(), "The switch was not added: a new switch can't overlap with an already active switch.", Toast.LENGTH_LONG);
+                                    overlap.show();
+                                }
+                            });
+                        }
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -117,6 +178,7 @@ public class week_tuesday extends AppCompatActivity {
         tuesDayEnd2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                allowed = true;
                 TimePickerDialog mTimePicker;
                 Calendar mcurrentTime = Calendar.getInstance();
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
@@ -124,8 +186,26 @@ public class week_tuesday extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(week_tuesday.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        tuesDayEnd2.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
-                        wpg.data.get("Tuesday").set(3, new Switch("night", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        for (int i = 0; i < 5; i++) {
+                            if (wpg.data.get("Tuesday").get(2*i).getState()){
+                                int hour = selectedHour*100 + selectedMinute;
+                                if (hour > wpg.data.get("Tuesday").get(2*i).getTime_Int() && hour < wpg.data.get("Tuesday").get(2*i + 1).getTime_Int()){
+                                    allowed = false;
+                                }
+                            }
+                        }
+                        if (allowed) {
+                            tuesDayEnd2.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
+                            wpg.data.get("Tuesday").set(3, new Switch("night", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast overlap = Toast.makeText(getApplicationContext(), "The switch was not added: a new switch can't overlap with an already active switch.", Toast.LENGTH_LONG);
+                                    overlap.show();
+                                }
+                            });
+                        }
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -136,6 +216,7 @@ public class week_tuesday extends AppCompatActivity {
         tuesDayStart3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                allowed = true;
                 TimePickerDialog mTimePicker;
                 Calendar mcurrentTime = Calendar.getInstance();
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
@@ -143,8 +224,26 @@ public class week_tuesday extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(week_tuesday.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        tuesDayStart3.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
-                        wpg.data.get("Tuesday").set(4, new Switch("day", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        for (int i = 0; i < 5; i++) {
+                            if (wpg.data.get("Tuesday").get(2*i).getState()){
+                                int hour = selectedHour*100 + selectedMinute;
+                                if (hour > wpg.data.get("Tuesday").get(2*i).getTime_Int() && hour < wpg.data.get("Tuesday").get(2*i + 1).getTime_Int()){
+                                    allowed = false;
+                                }
+                            }
+                        }
+                        if (allowed) {
+                            tuesDayStart3.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
+                            wpg.data.get("Tuesday").set(4, new Switch("day", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast overlap = Toast.makeText(getApplicationContext(), "The switch was not added: a new switch can't overlap with an already active switch.", Toast.LENGTH_LONG);
+                                    overlap.show();
+                                }
+                            });
+                        }
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -156,6 +255,7 @@ public class week_tuesday extends AppCompatActivity {
         tuesDayEnd3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                allowed = true;
                 TimePickerDialog mTimePicker;
                 Calendar mcurrentTime = Calendar.getInstance();
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
@@ -163,8 +263,26 @@ public class week_tuesday extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(week_tuesday.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        tuesDayEnd3.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
-                        wpg.data.get("Tuesday").set(5, new Switch("night", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        for (int i = 0; i < 5; i++) {
+                            if (wpg.data.get("Tuesday").get(2*i).getState()){
+                                int hour = selectedHour*100 + selectedMinute;
+                                if (hour > wpg.data.get("Tuesday").get(2*i).getTime_Int() && hour < wpg.data.get("Tuesday").get(2*i + 1).getTime_Int()){
+                                    allowed = false;
+                                }
+                            }
+                        }
+                        if (allowed) {
+                            tuesDayEnd3.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
+                            wpg.data.get("Tuesday").set(5, new Switch("night", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast overlap = Toast.makeText(getApplicationContext(), "The switch was not added: a new switch can't overlap with an already active switch.", Toast.LENGTH_LONG);
+                                    overlap.show();
+                                }
+                            });
+                        }
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -175,6 +293,7 @@ public class week_tuesday extends AppCompatActivity {
         tuesDayStart4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                allowed = true;
                 TimePickerDialog mTimePicker;
                 Calendar mcurrentTime = Calendar.getInstance();
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
@@ -182,8 +301,26 @@ public class week_tuesday extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(week_tuesday.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        tuesDayStart4.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
-                        wpg.data.get("Tuesday").set(6, new Switch("day", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        for (int i = 0; i < 5; i++) {
+                            if (wpg.data.get("Tuesday").get(2*i).getState()){
+                                int hour = selectedHour*100 + selectedMinute;
+                                if (hour > wpg.data.get("Tuesday").get(2*i).getTime_Int() && hour < wpg.data.get("Tuesday").get(2*i + 1).getTime_Int()){
+                                    allowed = false;
+                                }
+                            }
+                        }
+                        if (allowed) {
+                            tuesDayStart4.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
+                            wpg.data.get("Tuesday").set(6, new Switch("day", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast overlap = Toast.makeText(getApplicationContext(), "The switch was not added: a new switch can't overlap with an already active switch.", Toast.LENGTH_LONG);
+                                    overlap.show();
+                                }
+                            });
+                        }
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -195,6 +332,7 @@ public class week_tuesday extends AppCompatActivity {
         tuesDayEnd4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                allowed = true;
                 TimePickerDialog mTimePicker;
                 Calendar mcurrentTime = Calendar.getInstance();
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
@@ -202,8 +340,26 @@ public class week_tuesday extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(week_tuesday.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        tuesDayEnd4.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
-                        wpg.data.get("Tuesday").set(7, new Switch("night", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        for (int i = 0; i < 5; i++) {
+                            if (wpg.data.get("Tuesday").get(2*i).getState()){
+                                int hour = selectedHour*100 + selectedMinute;
+                                if (hour > wpg.data.get("Tuesday").get(2*i).getTime_Int() && hour < wpg.data.get("Tuesday").get(2*i + 1).getTime_Int()){
+                                    allowed = false;
+                                }
+                            }
+                        }
+                        if (allowed) {
+                            tuesDayEnd4.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
+                            wpg.data.get("Tuesday").set(7, new Switch("night", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast overlap = Toast.makeText(getApplicationContext(), "The switch was not added: a new switch can't overlap with an already active switch.", Toast.LENGTH_LONG);
+                                    overlap.show();
+                                }
+                            });
+                        }
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -214,6 +370,7 @@ public class week_tuesday extends AppCompatActivity {
         tuesDayStart5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                allowed = true;
                 TimePickerDialog mTimePicker;
                 Calendar mcurrentTime = Calendar.getInstance();
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
@@ -221,8 +378,26 @@ public class week_tuesday extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(week_tuesday.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        tuesDayStart5.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
-                        wpg.data.get("Tuesday").set(8, new Switch("day", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        for (int i = 0; i < 5; i++) {
+                            if (wpg.data.get("Tuesday").get(2*i).getState()){
+                                int hour = selectedHour*100 + selectedMinute;
+                                if (hour > wpg.data.get("Tuesday").get(2*i).getTime_Int() && hour < wpg.data.get("Tuesday").get(2*i + 1).getTime_Int()){
+                                    allowed = false;
+                                }
+                            }
+                        }
+                        if (allowed) {
+                            tuesDayStart5.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
+                            wpg.data.get("Tuesday").set(8, new Switch("day", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast overlap = Toast.makeText(getApplicationContext(), "The switch was not added: a new switch can't overlap with an already active switch.", Toast.LENGTH_LONG);
+                                    overlap.show();
+                                }
+                            });
+                        }
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
@@ -234,6 +409,7 @@ public class week_tuesday extends AppCompatActivity {
         tuesDayEnd5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                allowed = true;
                 TimePickerDialog mTimePicker;
                 Calendar mcurrentTime = Calendar.getInstance();
                 int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
@@ -241,8 +417,26 @@ public class week_tuesday extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(week_tuesday.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        tuesDayEnd5.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
-                        wpg.data.get("Tuesday").set(9, new Switch("night", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        for (int i = 0; i < 5; i++) {
+                            if (wpg.data.get("Tuesday").get(2*i).getState()){
+                                int hour = selectedHour*100 + selectedMinute;
+                                if (hour > wpg.data.get("Tuesday").get(2*i).getTime_Int() && hour < wpg.data.get("Tuesday").get(2*i + 1).getTime_Int()){
+                                    allowed = false;
+                                }
+                            }
+                        }
+                        if (allowed) {
+                            tuesDayEnd5.setText(String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute));
+                            wpg.data.get("Tuesday").set(9, new Switch("night", true, String.format("%02d",selectedHour) + ":" + String.format("%02d", selectedMinute)));
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast overlap = Toast.makeText(getApplicationContext(), "The switch was not added: a new switch can't overlap with an already active switch.", Toast.LENGTH_LONG);
+                                    overlap.show();
+                                }
+                            });
+                        }
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.setTitle("Select Time");
