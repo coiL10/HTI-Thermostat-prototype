@@ -31,4 +31,5 @@ dependencies {
     compile 'com.github.marcinmoskala:ArcSeekBar:0.20'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+    compile 'com.ms-square:expandableTextView:0.1.4'
 }

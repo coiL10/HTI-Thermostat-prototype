@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -37,97 +38,153 @@
                     android:textColor="@android:color/white"
                     android:textSize="20sp" />
 
-                <TextView
-                    android:id="@+id/Q1"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="#1111"
-                    android:paddingTop="5dp"
-                    android:text="How do I set a switch?"
-                    android:textColor="#000000" />
-
-                <TextView
-                    android:id="@+id/A1"
+                <com.ms.square.android.expandabletextview.ExpandableTextView
+                    android:id="@+id/expand_text_viewQA1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="#1111"
-                    android:text="Switches can be set under the week program menu. When a day is selected, five rows are shown. In these rows two times can be indicated. Between these times the day switch will occur. You must set the beginning and the ending time"
-                    android:visibility="visible" />
+                    expandableTextView:maxCollapsedLines="1"
+                    expandableTextView:animDuration="200">
 
-                <TextView
-                    android:id="@+id/Q2"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="#1111"
-                    android:paddingTop="5dp"
-                    android:text='What does the button "vacation mode" do?'
-                    android:textColor="#000000" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/A2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="#1111"
-                    android:text="When vacation mode is activated, the user-indicated temperature will remain untill turned off. Day time and night time switches do not affect this. When vacation mode is turned off, the system will automatically resume it's program."
-                    android:visibility="visible" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@id/expandable_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/help_selector"
+                        android:paddingTop="5dp"
+                        android:text="@string/QA1"
+                        android:textColor="#000000"/>
 
-                <TextView
-                    android:id="@+id/Q3"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="#1111"
-                    android:paddingTop="5dp"
-                    android:text="How many switches can I set?"
-                    android:textColor="#000000" />
+                    <ImageButton
+                        android:id="@id/expand_collapse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:paddingRight="10dp"
+                        android:layout_gravity="center"
+                        android:background="#CFCFCF"/>
+                </com.ms.square.android.expandabletextview.ExpandableTextView>
 
-                <TextView
-                    android:id="@+id/A3"
+                <com.ms.square.android.expandabletextview.ExpandableTextView
+                    android:id="@+id/expand_text_viewQA2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="#1111"
-                    android:text="You are able to set a maximum of 5 day switches interval"
-                    android:visibility="visible" />
+                    expandableTextView:maxCollapsedLines="1"
+                    expandableTextView:animDuration="200">
 
-                <TextView
-                    android:id="@+id/Q4"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="0dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="#1111"
-                    android:paddingTop="5dp"
-                    android:text="What does the reset button do?"
-                    android:textColor="#000000" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/A4"
+                    </LinearLayout>
+                    <TextView
+                        android:id="@id/expandable_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/help_selector"
+                        android:paddingTop="5dp"
+                        android:text="@string/QA2"
+                        android:textColor="#000000"/>
+
+                    <ImageButton
+                        android:id="@id/expand_collapse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:paddingRight="10dp"
+                        android:layout_gravity="center"
+                        android:background="#CFCFCF"/>
+                </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+                <com.ms.square.android.expandabletextview.ExpandableTextView
+                    android:id="@+id/expand_text_viewQA3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="#1111"
-                    android:text="It clears every existing siwtch. This way you are able to start working with a blank schedule."
-                    android:visibility="visible" />
+                    expandableTextView:maxCollapsedLines="1"
+                    expandableTextView:animDuration="200">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+                    <TextView
+                        android:id="@id/expandable_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/help_selector"
+                        android:paddingTop="5dp"
+                        android:text="@string/QA3"
+                        android:textColor="#000000"/>
+
+                    <ImageButton
+                        android:id="@id/expand_collapse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:paddingRight="10dp"
+                        android:layout_gravity="center"
+                        android:background="#CFCFCF"/>
+                </com.ms.square.android.expandabletextview.ExpandableTextView>
+
+                <com.ms.square.android.expandabletextview.ExpandableTextView
+                    android:id="@+id/expand_text_viewQA4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    expandableTextView:maxCollapsedLines="1"
+                    expandableTextView:animDuration="200">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                    </LinearLayout>
+                    <TextView
+                        android:id="@id/expandable_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="0dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/help_selector"
+                        android:paddingTop="5dp"
+                        android:text="@string/QA4"
+                        android:textColor="#000000"/>
+
+                    <ImageButton
+                        android:id="@id/expand_collapse"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:paddingRight="10dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/gradient_bg_faq_arrow"/>
+                </com.ms.square.android.expandabletextview.ExpandableTextView>
 
             </LinearLayout>
         </LinearLayout>

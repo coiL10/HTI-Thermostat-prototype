@@ -14,4 +14,12 @@
     <string name="title_activity_week_saturday">Saturday</string>
     <string name="title_activity_week_sunday">Sunday</string>
 
+    <string name="QA1">&lt;b>How do I set a switch?&lt;/b> &lt;br>
+        Switches can be set under the week program menu. When a day is selected, five rows are shown. In these rows two times can be indicated. Between these times the day switch will occur. You must set the beginning and the ending time.</string>
+    <string name="QA2">&lt;b>What does the button "vacation mode" do?&lt;/b> &lt;br>
+    When vacation mode is activated, the user-indicated temperature will remain until turned off. Day time and night time switches do not affect this. When vacation mode is turned off, the system will automatically resume its program.</string>
+    <string name="QA3">&lt;b>How many switches can I set?&lt;/b> &lt;br>
+    You are able to set a maximum of 5 day switches interval.</string>
+    <string name="QA4">&lt;b>What does the reset button do?&lt;/b> &lt;br>
+    It clears every existing switch. This way you are able to start working with a blank schedule.</string>
 </resources>
