@@ -33,14 +33,14 @@ public class WeekProgram {
             String day = this.valid_days[i];
             this.data.put(day, new ArrayList<Switch>());
             this.data.get(day).add(new Switch("night", false, "00:00"));
-            this.data.get(day).add(new Switch("night", false, "00:00"));
-            this.data.get(day).add(new Switch("night", false, "00:00"));
-            this.data.get(day).add(new Switch("night", false, "00:00"));
+            this.data.get(day).add(new Switch("day", false, "00:00"));
             this.data.get(day).add(new Switch("night", false, "00:00"));
             this.data.get(day).add(new Switch("day", false, "00:00"));
+            this.data.get(day).add(new Switch("night", false, "00:00"));
             this.data.get(day).add(new Switch("day", false, "00:00"));
+            this.data.get(day).add(new Switch("night", false, "00:00"));
             this.data.get(day).add(new Switch("day", false, "00:00"));
-            this.data.get(day).add(new Switch("day", false, "00:00"));
+            this.data.get(day).add(new Switch("night", false, "00:00"));
             this.data.get(day).add(new Switch("day", false, "00:00"));
         }
 		/* Create the default switches settings*/

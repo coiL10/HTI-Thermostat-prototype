@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         DayOrNight = (ImageView) findViewById(R.id.DayOrNight);
 
 
-        ScheduledExecutorService scheduleTaskExecutor = Executors.newScheduledThreadPool(5);
+        ScheduledExecutorService scheduleTaskExecutor = Executors.newScheduledThreadPool(1);
 
         scheduleTaskExecutor.scheduleAtFixedRate(new Runnable() {
             public void run() {

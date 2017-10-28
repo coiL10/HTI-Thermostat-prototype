@@ -22,14 +22,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/editTextThurday1"
+                <Button
+                    android:id="@+id/editTextThursday1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
-                    android:paddingLeft="30dp"
                     android:ems="4"
-                    android:inputType="time" />
+                    android:inputType="time"
+                    android:paddingLeft="30dp" />
 
                 <TextView
                     android:layout_width="20dp"
@@ -37,27 +37,22 @@
                     android:text="to" />
 
 
-                <EditText
-                    android:id="@+id/editTextThurday2"
+                <Button
+                    android:id="@+id/editTextThursday2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
                     android:ems="4"
                     android:inputType="time" />
 
-                <Switch
-                    android:id="@+id/switchThurday1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/editTextThurday3"
+                <Button
+                    android:id="@+id/editTextThursday3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
@@ -71,27 +66,22 @@
                     android:text="to" />
 
 
-                <EditText
-                    android:id="@+id/editTextThurday4"
+                <Button
+                    android:id="@+id/editTextThursday4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
                     android:ems="4"
                     android:inputType="time" />
 
-                <Switch
-                    android:id="@+id/switchThurday2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/editTextThurday5"
+                <Button
+                    android:id="@+id/editTextThursday5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
@@ -105,27 +95,22 @@
                     android:text="to" />
 
 
-                <EditText
-                    android:id="@+id/editTextThurday6"
+                <Button
+                    android:id="@+id/editTextThursday6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
                     android:ems="4"
                     android:inputType="time" />
 
-                <Switch
-                    android:id="@+id/switchThurday3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/editTextThurday7"
+                <Button
+                    android:id="@+id/editTextThursday7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
@@ -139,27 +124,22 @@
                     android:text="to" />
 
 
-                <EditText
-                    android:id="@+id/editTextThurday8"
+                <Button
+                    android:id="@+id/editTextThursday8"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
                     android:ems="4"
                     android:inputType="time" />
 
-                <Switch
-                    android:id="@+id/switchThurday4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/editTextThurday9"
+                <Button
+                    android:id="@+id/editTextThursday9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
@@ -173,32 +153,16 @@
                     android:text="to" />
 
 
-                <EditText
-                    android:id="@+id/editTextThurday10"
+                <Button
+                    android:id="@+id/editTextThursday10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.2"
                     android:ems="4"
                     android:inputType="time" />
 
-                <Switch
-                    android:id="@+id/switchThurday5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.2" />
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_weight="1"
-        android:background="?android:attr/windowBackground"
-        app:itemBackground="@color/colorPrimary"
-        app:itemIconTint="@drawable/nav_item_color_state"
-        app:itemTextColor="@drawable/nav_item_color_state"
-        app:menu="@menu/navigation" />
 </LinearLayout>
