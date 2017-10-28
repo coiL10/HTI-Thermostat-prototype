@@ -183,7 +183,7 @@
                         android:layout_marginRight="10dp"
                         android:paddingRight="10dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/gradient_bg_faq_arrow"/>
+                        android:background="#CFCFCF"/>
                 </com.ms.square.android.expandabletextview.ExpandableTextView>
 
             </LinearLayout>
