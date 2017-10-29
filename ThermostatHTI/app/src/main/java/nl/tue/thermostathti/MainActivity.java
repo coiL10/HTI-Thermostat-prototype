@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -49,17 +50,15 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    intent = new Intent(MainActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    return true;
+                    break;
                 case R.id.navigation_dashboard:
                     intent = new Intent(MainActivity.this, week_overview.class);
                     startActivity(intent);
-                    return true;
+                    break;
                 case R.id.navigation_notifications:
                     intent = new Intent(MainActivity.this, Help.class);
                     startActivity(intent);
-                    return true;
+                    break;
             }
             return false;
         }
@@ -421,6 +420,9 @@ public class MainActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        Menu menu = navigation.getMenu();
+        MenuItem menuItem = menu.getItem(0);
+        menuItem.setChecked(true);
     }
 
 }

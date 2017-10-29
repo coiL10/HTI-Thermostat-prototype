@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -25,15 +26,13 @@ public class Help extends AppCompatActivity {
                 case R.id.navigation_home:
                     intent = new Intent(Help.this, MainActivity.class);
                     startActivity(intent);
-                    return true;
+                    break;
                 case R.id.navigation_dashboard:
                     intent = new Intent(Help.this, week_overview.class);
                     startActivity(intent);
-                    return true;
+                    break;
                 case R.id.navigation_notifications:
-                    intent = new Intent(Help.this, Help.class);
-                    startActivity(intent);
-                    return true;
+                    break;
             }
             return false;
         }
@@ -47,6 +46,9 @@ public class Help extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        Menu menu = navigation.getMenu();
+        MenuItem menuItem = menu.getItem(2);
+        menuItem.setChecked(true);
 
         ExpandableTextView expTv1 = (ExpandableTextView) findViewById(R.id.expand_text_viewQA1);
         ExpandableTextView expTv2 = (ExpandableTextView) findViewById(R.id.expand_text_viewQA2);
