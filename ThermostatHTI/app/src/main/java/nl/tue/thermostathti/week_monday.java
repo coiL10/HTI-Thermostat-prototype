@@ -114,7 +114,7 @@ public class week_monday extends AppCompatActivity {
                         for (int i = 0; i < 5; i++) {
                             if (wpg.data.get("Monday").get(2*i).getState()){
                                 int hour = selectedHour*100 + selectedMinute;
-                                if ((hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || (wpg.data.get("Monday").get(0).getTime_Int() < wpg.data.get("Monday").get(2*i).getTime_Int() && hour > wpg.data.get("Monday").get(2*i + 1).getTime_Int())){
+                                if ((hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || (wpg.data.get("Monday").get(0).getTime_Int() < wpg.data.get("Monday").get(2*i).getTime_Int() && hour > wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || hour < wpg.data.get("Monday").get(0).getTime_Int()){
                                     allowed = false;
                                 }
                             }
@@ -191,7 +191,7 @@ public class week_monday extends AppCompatActivity {
                         for (int i = 0; i < 5; i++) {
                             if (wpg.data.get("Monday").get(2*i).getState()){
                                 int hour = selectedHour*100 + selectedMinute;
-                                if ((hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || (wpg.data.get("Monday").get(2).getTime_Int() < wpg.data.get("Monday").get(2*i).getTime_Int() && hour > wpg.data.get("Monday").get(2*i + 1).getTime_Int())){
+                                if ((hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || (wpg.data.get("Monday").get(2).getTime_Int() < wpg.data.get("Monday").get(2*i).getTime_Int() && hour > wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || hour < wpg.data.get("Monday").get(2).getTime_Int()){
                                     allowed = false;
                                 }
                             }
@@ -268,7 +268,7 @@ public class week_monday extends AppCompatActivity {
                         for (int i = 0; i < 5; i++) {
                             if (wpg.data.get("Monday").get(2*i).getState()){
                                 int hour = selectedHour*100 + selectedMinute;
-                                if ((hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || (wpg.data.get("Monday").get(4).getTime_Int() < wpg.data.get("Monday").get(2*i).getTime_Int() && hour > wpg.data.get("Monday").get(2*i + 1).getTime_Int())){
+                                if ((hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || (wpg.data.get("Monday").get(4).getTime_Int() < wpg.data.get("Monday").get(2*i).getTime_Int() && hour > wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || hour < wpg.data.get("Monday").get(4).getTime_Int()){
                                     allowed = false;
                                 }
                             }
@@ -345,7 +345,7 @@ public class week_monday extends AppCompatActivity {
                         for (int i = 0; i < 5; i++) {
                             if (wpg.data.get("Monday").get(2*i).getState()){
                                 int hour = selectedHour*100 + selectedMinute;
-                                if ((hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || (wpg.data.get("Monday").get(6).getTime_Int() < wpg.data.get("Monday").get(2*i).getTime_Int() && hour > wpg.data.get("Monday").get(2*i + 1).getTime_Int())){
+                                if ((hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || (wpg.data.get("Monday").get(6).getTime_Int() < wpg.data.get("Monday").get(2*i).getTime_Int() && hour > wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || hour < wpg.data.get("Monday").get(6).getTime_Int()){
                                     allowed = false;
                                 }
                             }
@@ -422,7 +422,7 @@ public class week_monday extends AppCompatActivity {
                         for (int i = 0; i < 5; i++) {
                             if (wpg.data.get("Monday").get(2*i).getState()){
                                 int hour = selectedHour*100 + selectedMinute;
-                                if ((hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || (wpg.data.get("Monday").get(8).getTime_Int() < wpg.data.get("Monday").get(2*i).getTime_Int() && hour > wpg.data.get("Monday").get(2*i + 1).getTime_Int())){
+                                if ((hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || (wpg.data.get("Monday").get(8).getTime_Int() < wpg.data.get("Monday").get(2*i).getTime_Int() && hour > wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || hour < wpg.data.get("Monday").get(8).getTime_Int()){
                                     allowed = false;
                                 }
                             }
