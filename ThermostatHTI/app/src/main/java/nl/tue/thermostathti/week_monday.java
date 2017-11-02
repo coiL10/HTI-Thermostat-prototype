@@ -3,6 +3,7 @@ package nl.tue.thermostathti;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,8 +24,9 @@ import java.util.concurrent.TimeUnit;
 public class week_monday extends AppCompatActivity {
 
     WeekProgram wpg;
+    int index;
     Button monDayStart1, monDayEnd1, monDayStart2, monDayEnd2, monDayStart3, monDayEnd3, monDayStart4, monDayEnd4, monDayStart5, monDayEnd5;
-    Boolean allowed;
+    Boolean allowed, intervalSet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +114,7 @@ public class week_monday extends AppCompatActivity {
                         for (int i = 0; i < 5; i++) {
                             if (wpg.data.get("Monday").get(2*i).getState()){
                                 int hour = selectedHour*100 + selectedMinute;
-                                if (hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()){
+                                if ((hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || (wpg.data.get("Monday").get(0).getTime_Int() < wpg.data.get("Monday").get(2*i).getTime_Int() && hour > wpg.data.get("Monday").get(2*i + 1).getTime_Int())){
                                     allowed = false;
                                 }
                             }
@@ -189,7 +191,7 @@ public class week_monday extends AppCompatActivity {
                         for (int i = 0; i < 5; i++) {
                             if (wpg.data.get("Monday").get(2*i).getState()){
                                 int hour = selectedHour*100 + selectedMinute;
-                                if (hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()){
+                                if ((hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || (wpg.data.get("Monday").get(2).getTime_Int() < wpg.data.get("Monday").get(2*i).getTime_Int() && hour > wpg.data.get("Monday").get(2*i + 1).getTime_Int())){
                                     allowed = false;
                                 }
                             }
@@ -266,7 +268,7 @@ public class week_monday extends AppCompatActivity {
                         for (int i = 0; i < 5; i++) {
                             if (wpg.data.get("Monday").get(2*i).getState()){
                                 int hour = selectedHour*100 + selectedMinute;
-                                if (hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()){
+                                if ((hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || (wpg.data.get("Monday").get(4).getTime_Int() < wpg.data.get("Monday").get(2*i).getTime_Int() && hour > wpg.data.get("Monday").get(2*i + 1).getTime_Int())){
                                     allowed = false;
                                 }
                             }
@@ -343,7 +345,7 @@ public class week_monday extends AppCompatActivity {
                         for (int i = 0; i < 5; i++) {
                             if (wpg.data.get("Monday").get(2*i).getState()){
                                 int hour = selectedHour*100 + selectedMinute;
-                                if (hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()){
+                                if ((hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || (wpg.data.get("Monday").get(6).getTime_Int() < wpg.data.get("Monday").get(2*i).getTime_Int() && hour > wpg.data.get("Monday").get(2*i + 1).getTime_Int())){
                                     allowed = false;
                                 }
                             }
@@ -420,7 +422,7 @@ public class week_monday extends AppCompatActivity {
                         for (int i = 0; i < 5; i++) {
                             if (wpg.data.get("Monday").get(2*i).getState()){
                                 int hour = selectedHour*100 + selectedMinute;
-                                if (hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()){
+                                if ((hour > wpg.data.get("Monday").get(2*i).getTime_Int() && hour < wpg.data.get("Monday").get(2*i + 1).getTime_Int()) || (wpg.data.get("Monday").get(8).getTime_Int() < wpg.data.get("Monday").get(2*i).getTime_Int() && hour > wpg.data.get("Monday").get(2*i + 1).getTime_Int())){
                                     allowed = false;
                                 }
                             }
@@ -551,5 +553,40 @@ public class week_monday extends AppCompatActivity {
                 }
             }
         }).start();
+    }
+
+    @Override
+    public void onBackPressed() {
+        intervalSet = true;
+        index = 0;
+        for (int i = 0; i < 5; i++) {
+            if ((wpg.data.get("Monday").get(2*i).getState() ^ wpg.data.get("Monday").get(2*i+1).getState())){
+                intervalSet = false;
+                index = i;
+            }
+        }
+
+        if (!intervalSet){
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast overlap = Toast.makeText(getApplicationContext(), "The switch interval " + index + " is not complete. Please add beginning and ending times", Toast.LENGTH_LONG);
+                    overlap.show();
+                }
+            });
+        } else {
+            week_monday.super.onBackPressed();
+        }
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();    //Call the back button's method
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
