@@ -1,10 +1,12 @@
 package nl.tue.thermostathti;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -250,18 +252,38 @@ public class week_overview extends AppCompatActivity {
         reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                wpg.setDefault();
-
-                new Thread(new Runnable() {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                     @Override
-                    public void run() {
-                        try {
-                            HeatingSystem.setWeekProgram(wpg);
-                        } catch (Exception e) {
-                            System.err.println("Error from getdata " + e);
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Yes button clicked
+                                wpg.setDefault();
+
+                                new Thread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            HeatingSystem.setWeekProgram(wpg);
+                                        } catch (Exception e) {
+                                            System.err.println("Error from getdata " + e);
+                                        }
+                                    }
+                                }).start();
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                break;
                         }
                     }
-                }).start();
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(week_overview.this);
+                builder.setMessage("Are you sure you want to reset the program?").setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
+
+
             }
         });
 
